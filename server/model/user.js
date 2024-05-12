@@ -10,10 +10,30 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
     },
-    Balance: {
-      type: mongoose.Schema.Types.ObjectId,
-      Ref: "Balance",
+    totalBalance: {
+      type: Number,
     },
+    // means paise bhejene wala kon kon hai
+    AccountBalance: [
+      {
+        amount: Number,
+        sender: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+      },
+    ],
+    //means isne kis kis ko paise bheje hai
+
+    sendAmount: [
+      {
+        sendAmount: Number,
+        reciever: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
